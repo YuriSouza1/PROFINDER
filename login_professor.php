@@ -16,7 +16,7 @@ $contato = $_POST["contato"];
 $certificados = $_POST["certificados"];
 $formacao = $_POST["formacao"];
 $instituicoes = $_POST["instituicoes"];
-
+// a
 $sql = "SELECT * FROM professor
         WHERE usuario = '{$usuario}'
         AND senha = '{$senha}'
