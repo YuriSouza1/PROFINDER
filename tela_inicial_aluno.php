@@ -77,7 +77,7 @@
         </section>
     </header>    
     <main>
-        <h1 id="h1">Qual matéria você deseja lecionar?</h1>
+        <h1 id="h1">Qual matéria você deseja aprender?</h1>
         <div class="div-main">
             <section>
                 <div>
