@@ -142,10 +142,10 @@
             </ul>
 
             <div id="footer_subscribe">
-                <h3>Newsletter</h3>
+                <h3>propagandas do site</h3>
 
                 <p>
-                    Gostaria de ficar por dentro das novidades?
+                Gostaria de participar das propagandas do site?
                 </p>
 
                 <div id="input_group">

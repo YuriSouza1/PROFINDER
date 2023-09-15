@@ -1,4 +1,5 @@
 <?php 
+
     session_start();
     if(empty($_SESSION)){
         print "<script>location.href=index.php';</script>";
@@ -81,28 +82,49 @@
         <h1 id="h1">Qual matéria você deseja lecionar?</h1>
         <div class="div-main">
             <section>
-                <div>
-                    <img src="imagens/matematica.png" alt="matematica">
-                    <h2>Matemática</h2>
-                    <a href=""><input type="button" id="button1" value="Lecionar"></a>
-                </div>
-                <div>
-                    <img src="imagens/portugues.png" alt="portugues">
-                    <h2>Português</h2>
-                    <a href=""><input type="button" id="button2" value="Lecionar"></a>
-                </div>
-            </section>
-            <section>
-                <div>
-                    <img src="imagens/geografia.png" alt="geografia">
-                    <h2>Geografia</h2>
-                    <a href="capp.html"><input type="button" id="button3" value="Aprender"></a>
-                </div>
-                <div>
-                    <img src="imagens/historia.png" alt="historia">
-                    <h2>História</h2>
-                    <a href="capp.html"><input type="button" id="button4" value="Aprender"></a>
-                </div>
+           <?php  
+           include('conexao.php');
+           if (!$conn) {
+    die("Conexão falhou: " . mysqli_connect_error());
+}
+
+// Consulta SQL para listar as formações sem repetição
+$sql = "SELECT DISTINCT formacao FROM professor";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    // Exibe as formações
+    while($row = mysqli_fetch_assoc($result)) {       
+        echo'<div>
+        <img src="imagens/'.$row["formacao"].'.png" alt="'.$row["formacao"].'">
+        <h2>';
+         $formProf = $row["formacao"];
+        if($formProf == 'historia'){
+            echo 'História';
+        }
+        elseif($formProf == 'geografia'){
+            echo 'Geografia';
+        }
+        elseif($formProf == 'matematica'){
+            echo 'Matemática';
+        }
+        elseif($formProf ==  'portugues'){
+            echo 'Português';
+        };
+        echo'
+       </h2>
+        <a href="'.$row["formacao"].'.php"><input type="button" id="button1" value="Lecionar"></a>
+    </div>';
+        
+    }
+} else {
+    echo "Nenhum resultado encontrado.";
+}
+
+// Fecha a conexão
+mysqli_close($conn);
+             
+        ?>    
             </section>
         </div>
     </main>
@@ -158,10 +180,10 @@
             </ul>
 
             <div id="footer_subscribe">
-                <h3>Newsletter</h3>
+                <h3>Propagandas do site</h3>
 
                 <p>
-                    Gostaria de ficar por dentro das novidades?
+                    Gostaria de participar das propagandas do site?
                 </p>
 
                 <div id="input_group">

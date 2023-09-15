@@ -1,26 +1,32 @@
-
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="CSS/tela_inicial_aluno.css">
-    <title>Pagina Principal Professor</title>
-</head>
 <?php 
+
     session_start();
     if(empty($_SESSION)){
         print "<script>location.href=index.php';</script>";
     }
-    ?>
+?>
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>ProFinder | Visitar Perfil</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='CSS/visitar.css'>
+    
+</head>
+
 <body>
+
     <header>
-        <section id="cabecalho">
+    <section id="cabecalho">
             <nav>
                 <div id="menu">
                     <div id="menu-bar" onclick="menuOnClick()">
@@ -55,82 +61,71 @@
                 <p class="conta"> <?php print '<a href="logout.php"> SAIR </a>' ?> </p>
             </div>
         </section>
-        <section id="carouselid">
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="Imagens/carrocel.jpg" alt="primeiro slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block seg w-100" src="Imagens/carousel.jpg" alt="segundo slide">
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </section>
-    </header>    
-    <main>
-        <h1 id="h1">Qual matéria você deseja aprender?</h1>
-        <div class="div-main">
-            <section>
-           <?php  
-           include('conexao.php');
-           if (!$conn) {
-    die("Conexão falhou: " . mysqli_connect_error());
-}
+</header>
+    <main style="flex-direction:column">
+    <?php       
+include('conexao.php');
+if (isset($_GET['formacao'])) {
+    // Checa a conexão
+    if (!$conn) {
+        die("Conexão falhou: " . mysqli_connect_error());
+    }
 
-// Consulta SQL para listar as formações sem repetição
-$sql = "SELECT DISTINCT formacao FROM professor";
-$result = mysqli_query($conn, $sql);
+    $formacao = mysqli_real_escape_string($conn, $_GET['formacao']);
 
-if (mysqli_num_rows($result) > 0) {
-    // Exibe as formações
-    while($row = mysqli_fetch_assoc($result)) {   
-        $formacao = urlencode($row['formacao']);    
-        echo'<div>
-        <img src="imagens/'.$row["formacao"].'.png" alt="'.$row["formacao"].'">
-        <h2>';
-         $formProf = $row["formacao"];
-        if($formProf == 'historia'){
+    $sql = "SELECT * FROM professor WHERE formacao = '$formacao'";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        // Exibe as informações da formação
+        echo '<h1 id="h1">Professores de ';
+        if ($formacao == 'historia') {
             echo 'História';
-        }
-        elseif($formProf == 'geografia'){
+        } elseif ($formacao == 'geografia') {
             echo 'Geografia';
-        }
-        elseif($formProf == 'matematica'){
+        } elseif ($formacao == 'matematica') {
             echo 'Matemática';
-        }
-        elseif($formProf ==  'portugues'){
+        } elseif ($formacao == 'portugues') {
             echo 'Português';
         };
-        echo'</h2>
-        <a href="listagem_prof.php?formacao='.$formacao.'"><input type="button" id="button1" value="Lecionar"></a>
-    </div>';
-        
-    }
-    mysqli_free_result($result);
-} else {
-    echo "Nenhum resultado encontrado.";
-}
+        echo '</h1><div class="card-container">';
 
-// Fecha a conexão
-mysqli_close($conn);
-             
-        ?>    
-            </section>
+        while ($row = mysqli_fetch_assoc($result)) {   
+            echo '
+            <div class="card">
+                <div class="div-usuario">
+                    <img class="user2" src="Imagens/user.png" alt="">
+                    <p>'.$row['usuario'].'</p>
+                </div>
+                <div class="info-user">
+                    <p><b>Contato:</b><br/>'.$row['contato'].'</p>   
+                    <p><b>E-mail:</b><br/>'.$row['email'].'</p>    
+                    <p><b>Certificado:</b><br/>'.$row['certificados'].'</p>   
+                    <p><b>Instituição:</b><br/>'.$row['instituicoes'].'</p>         
+                    <button type="submit">Visitar perfil</button>
+                </div>
+            </div>';
+        }
+    } else {
+        echo "0 resultados";
+    }
+
+    // Fecha a conexão
+    mysqli_close($conn);
+} else {
+    echo "Formação não especificada.";
+}
+?>  
+           
+                 
         </div>
+
     </main>
+
     <footer>
         <div id="footer_content">
             <div id="footer_contacts">
-                <img src="Imagens/logo.png" alt="logo" id="logo">
+                <h1>Logo</h1>
                 <p>
                     Bem-vindo ao <span>ProFinder</span>, uma plataforma que vai te ajudar com suas
                     dúvidas da melhor maneira possível!
@@ -156,7 +151,7 @@ mysqli_close($conn);
                     <h3>Início</h3>
                 </li>
                 <li>
-                    <a href="tela_inicial_aluno.php" class="footer-link">Home</a>
+                    <a href="#" class="footer-link">Home</a>
                 </li>
                 <li>
                     <a href="#" class="footer-link">Página de Login</a>
@@ -198,6 +193,7 @@ mysqli_close($conn);
             &#169 2023 - ProFinder | Todos os direitos reservados
         </div>
     </footer>
+
     <script src="js/hamburguer.js"></script>
     <script src="js/index.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -209,6 +205,15 @@ mysqli_close($conn);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    
 </body>
 
 </html>
+
+<!-- Menu -->
+    <!-- <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <div class="menu">
+            <a href="#">Home</a>
+            <a href="#">Sobre</a>
+            <a href="#">Contato</a>
+        </div> -->

@@ -3,7 +3,7 @@ session_start(); // Inicia a sessão
 
 if (empty($_POST) or (empty($_POST["usuario"])  or (empty($_POST["senha"])))) {
     // Verifica se não há dados enviados via POST ou se os campos "usuario" e "senha" estão vazios
-    print "<script>location.href='index.php';</script>"; // Redireciona para index.php
+    print "<script>location.href='login_professor.php';</script>"; // Redireciona para index.php
 }
 
 include('conexao.php'); // Inclui o arquivo de conexão com o banco de dados
@@ -16,7 +16,7 @@ $contato = $_POST["contato"];
 $certificados = $_POST["certificados"];
 $formacao = $_POST["formacao"];
 $instituicoes = $_POST["instituicoes"];
-// a
+
 $sql = "SELECT * FROM professor
         WHERE usuario = '{$usuario}'
         AND senha = '{$senha}'
@@ -38,7 +38,7 @@ if ($qtd > 0) {
     $_SESSION["instituicoes"] = $row->instituicoes;
     $_SESSION["id"] = $row->id;
     
-    print "<script>location.href='tela_inicial_professor.php';</script>"; // Redireciona para aluno.php
+    print "<script>location.href='editar_perfil_prof.php';</script>"; // Redireciona para aluno.php
 } else {
     // Se o número de linhas for igual a zero, significa que o usuário ou senha estão incorretos
     print "<script>alert('Usuário ou senha incorretos');</script>"; // Exibe um alerta com a mensagem de erro

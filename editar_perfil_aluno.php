@@ -1,8 +1,9 @@
 <?php 
-    session_start(); // iniciailizando a sessão 
+    session_start();
     if(empty($_SESSION)){
         print "<script>location.href=index.php';</script>";
     }
+
 
  
     $usuario =""; 
@@ -110,7 +111,7 @@
             <img id="user" src="imagens/user.webp" alt="user">
             <div>
                 <div class="nome">
-                    <p>Nome: <?php print $_SESSION["usuario"]?> </p>
+                    <p>Nome: <?php echo $_SESSION["usuario"]?> </p>
                     
                 </div>
                 <p class="conta">Conta do aluno.</p>
