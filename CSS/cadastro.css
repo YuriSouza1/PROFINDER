@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-image: linear-gradient(70deg, #2D5EA7 0%, #46434D 74%);
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background-color: #403E40;
+    min-width: 700px;
+    min-height: 70vh;
+    padding: 2rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#user {
+    width: 4em;
+    height: 4em;
+    margin-top: -1em;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-field label {
+    color: white;
+    font-size: 15px;
+}
+
+.input-field input {
+    margin-top: 0.5rem;
+}
+
+#username, #password, #email, #contato, #sobremim, #instituicoes, #formacao, #certificado {
+    background-color: #403E40;
+    color: white;
+    font-size: 13px;
+    box-sizing: border-box;
+    width: 250px;
+    height: 30px;
+    border: none;
+    border-bottom: 2px solid white;
+    outline: none;
+}
+
+.div-main-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.div-main-check {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+#vcsera {
+    margin-top: -1em;
+}
+
+.div-main-check label {
+    color: white;
+    font-size: 12px;
+}
+
+input[type="submit"] {
+    width: 120px;
+    height: 25px;
+    color: white;
+    font-size: 14px;
+    background-color: #403E40;
+    border: solid white 1px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.div-btn {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.botao {
+    margin-top: 1.2em;
+    border-color: white;
+    color: black;
+    box-shadow: 0 0 40px 40px #00000000 inset, 0 0 0 0 #3498db;
+    -webkit-transition: all 150ms ease-in-out;
+    transition: all 150ms ease-in-out;
+}
+
+.botao:hover, .botao:focus {
+    box-shadow: 0 0 10px 0 #3498db67 inset, 0 0 10px 4px #3498db79;
+    outline: 0;
+}
+
+.div-nao-tem {
+    text-align: center;
+    margin-top: 1.4rem;
+}
+
+.div-nao-tem p a {
+    color: white;
+    font-size: 10px;
+}
+
+.checkbox-round {
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 2px solid #ddd;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.checkbox-round:checked {
+    background-color: gray;
+}

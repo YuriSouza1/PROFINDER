@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+   font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-image: linear-gradient(70deg, #2D5EA7 0%, #46434D 74%);
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    min-width: 100vw;
+    font-family: "Poppins", sans-serif;
+   
+}
+
+.cabecalho_topo{
+
+    background-color: #403E40;
+    min-width: 100%;
+    min-height: 70px;
+    padding: 2rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+   
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+
+
+}
+  
+  h3 {
+    color: white;
+   font-family: "Poppins", sans-serif;
+    font-size:16px;
+    letter-spacing: 2px; 
+font-weight: 400;
+    color: #FFF;
+    text-align: right;
+
+    
+  }
+  a {
+    float: right;
+    color:#7eb0ff;
+  }
+  
+  @keyframes type {
+    0% {
+      width: 0;
+    }
+  
+  }
+  @keyframes caret { 
+    50% { 
+      box-shadow: .6em 0 0 transparent;
+    }
+  }
