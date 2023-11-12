@@ -102,7 +102,7 @@ if (isset($_GET['formacao'])) {
                     <p><b>E-mail:</b><br/>'.$row['email'].'</p>    
                     <p><b>Certificado:</b><br/>'.$row['certificados'].'</p>   
                     <p><b>Instituição:</b><br/>'.$row['instituicoes'].'</p>         
-                    <button type="submit">Visitar perfil</button>
+                    <button type="submit"> <a href="https://mail.google.com/mail/u/0/#inbox?compose=new"target="_blank">Enviar Mensagem</a> </button>
                 </div>
             </div>';
         }

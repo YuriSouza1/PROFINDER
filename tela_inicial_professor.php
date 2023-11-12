@@ -79,54 +79,7 @@
         </section>
     </header>    
     <main>
-        <h1 id="h1">Qual matéria você deseja lecionar?</h1>
-        <div class="div-main">
-            <section>
-           <?php  
-           include('conexao.php');
-           if (!$conn) {
-    die("Conexão falhou: " . mysqli_connect_error());
-}
-
-// Consulta SQL para listar as formações sem repetição
-$sql = "SELECT DISTINCT formacao FROM professor";
-$result = mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) > 0) {
-    // Exibe as formações
-    while($row = mysqli_fetch_assoc($result)) {       
-        echo'<div>
-        <img src="imagens/'.$row["formacao"].'.png" alt="'.$row["formacao"].'">
-        <h2>';
-         $formProf = $row["formacao"];
-        if($formProf == 'historia'){
-            echo 'História';
-        }
-        elseif($formProf == 'geografia'){
-            echo 'Geografia';
-        }
-        elseif($formProf == 'matematica'){
-            echo 'Matemática';
-        }
-        elseif($formProf ==  'portugues'){
-            echo 'Português';
-        };
-        echo'
-       </h2>
-        <a href="'.$row["formacao"].'.php"><input type="button" id="button1" value="Lecionar"></a>
-    </div>';
-        
-    }
-} else {
-    echo "Nenhum resultado encontrado.";
-}
-
-// Fecha a conexão
-mysqli_close($conn);
-             
-        ?>    
-            </section>
-        </div>
+        <h1>Os alunos entrarão em contato com você pelo meio de contato oferecido</h1>
     </main>
     <footer>
         <div id="footer_content">
